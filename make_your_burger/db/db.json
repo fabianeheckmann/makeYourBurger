@@ -65,17 +65,49 @@
   },
   "status": [
     {
-      "id": 1,
+      "id": "1",
       "tipo": "Solicitado"
     },
     {
-      "id": 2,
+      "id": "2",
       "tipo": "Em produção"
     },
     {
-      "id": 3,
+      "id": "3",
       "tipo": "Finalizado"
     }
   ],
-  "burgers": []
+  "burgers": [
+    {
+      "id": "408b",
+      "status": "solicitado"
+    },
+    {
+      "id": "74f0",
+      "options": [
+        null
+      ],
+      "status": "solicitado"
+    },
+    {
+      "id": "ca4c",
+      "name": "teste",
+      "options": [
+        null
+      ],
+      "status": "solicitado"
+    },
+    {
+      "id": "f11a",
+      "name": "teste",
+      "selectedOptions": [],
+      "status": "solicitado"
+    },
+    {
+      "id": "c6ba",
+      "name": "teste",
+      "selectedOptions": [],
+      "status": "solicitado"
+    }
+  ]
 }
