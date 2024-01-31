@@ -66,7 +66,7 @@ export default {
       name: null,
       bread: null,
       meat: null,
-      selectedOptions: [],
+      options: [],
       msg: null,
     };
   },
@@ -78,21 +78,18 @@ export default {
       this.breads = data.paes;
       this.meats = data.carnes;
       this.optionsData = data.opcionais;
+
+      console.log(this.optionsData);
     },
 
     async createBurger(e) {
       e.preventDefault();
 
-      const optionsArray = Array.isArray(this.opcionais)
-        ? Array.from(this.opcionais)
-        : [];
-
-      console.log(optionsArray);
       const data = {
         name: this.nome,
         bread: this.pao,
         meat: this.carne,
-        selectedOptions: optionsArray,
+        options: Array.from(this.options),
         status: "solicitado",
       };
       console.log(data);
