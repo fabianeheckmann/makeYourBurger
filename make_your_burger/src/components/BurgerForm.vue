@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p>message</p>
     <div>
+      <MessageAlert :msg="msg" v-show="msg"/>
       <form id="burger-form" @submit="createBurger">
         <h1>Monte seu burger</h1>
         <div class="input-container">
@@ -16,16 +16,14 @@
         <div class="input-container">
           <label for="bread">choose bread: </label>
           <select name="bread" id="bread" v-model="bread">
-            <option value="">select your bread</option>
             <option v-for="bread in breads" :key="bread.id" :value="bread.tipo">
-              {{ bread.tipo }}
+             {{ bread.tipo }}
             </option>
           </select>
         </div>
         <div class="input-container">
-          <label for="protein">choose protein: </label>
-          <select name="protein" id="protein" v-model="protein">
-            <option value="">select your protein</option>
+          <label for="meat">choose meat: </label>
+          <select name="meat" id="meat" v-model="meat">
             <option v-for="meat in meats" :key="meat.id" :value="meat.tipo">
               {{ meat.tipo }}
             </option>
@@ -56,6 +54,9 @@
 </template>
 
 <script>
+
+import MessageAlert from "./MessageAlert.vue";
+
 export default {
   name: "BurgerForm",
   data() {
@@ -75,11 +76,9 @@ export default {
       const req = await fetch("http://localhost:3000/ingredientes");
       const data = await req.json();
 
+      this.optionsData = data.opcionais;
       this.breads = data.paes;
       this.meats = data.carnes;
-      this.optionsData = data.opcionais;
-
-      console.log(this.optionsData);
     },
 
     async createBurger(e) {
@@ -87,12 +86,11 @@ export default {
 
       const data = {
         name: this.nome,
-        bread: this.pao,
-        meat: this.carne,
+        bread: this.bread,
+        meat: this.meat,
         options: Array.from(this.options),
         status: "solicitado",
       };
-      console.log(data);
 
       const dataJson = JSON.stringify(data);
 
@@ -103,12 +101,18 @@ export default {
       });
 
       const res = await req.json();
-      console.log(res);
+      this.msg = `Pedido número: ${res.id} realizado com sucesso!`
+
+      setTimeout(() => this.msg = '', 3000);
     },
   },
   mounted() {
     this.getIngredientes();
   },
+  components: {
+    MessageAlert,
+    MessageAlert
+}
 };
 </script>
 
@@ -116,6 +120,10 @@ export default {
 #burger-form {
   max-width: 400px;
   margin: 0 auto;
+}
+
+#burger-form h1 {
+  text-align: justify;
 }
 
 .input-container {

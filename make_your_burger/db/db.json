@@ -79,43 +79,31 @@
   ],
   "burgers": [
     {
-      "id": "408b",
-      "status": "solicitado"
-    },
-    {
-      "id": "74f0",
+      "id": "3479",
+      "name": "teste",
+      "bread": "Italiano Branco",
+      "meat": null,
       "options": [
-        null
+        "Bacon"
       ],
       "status": "solicitado"
     },
     {
-      "id": "ca4c",
+      "id": "2d15",
       "name": "teste",
+      "bread": "Parmesão e Orégano",
       "options": [
-        null
+        "Salame"
       ],
       "status": "solicitado"
     },
     {
-      "id": "f11a",
+      "id": "b9ba",
       "name": "teste",
-      "selectedOptions": [],
-      "status": "solicitado"
-    },
-    {
-      "id": "c6ba",
-      "name": "teste",
-      "selectedOptions": [],
-      "status": "solicitado"
-    },
-    {
-      "id": "5751",
-      "name": "teste",
+      "bread": "3 Queijos",
+      "meat": "Alcatra",
       "options": [
-        "Bacon",
-        "Salame",
-        "Cebola roxa"
+        "Bacon"
       ],
       "status": "solicitado"
     }
