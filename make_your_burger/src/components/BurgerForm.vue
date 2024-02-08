@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <MessageAlert :msg="msg" v-show="msg"/>
+      <MessageAlert :msg="msg" v-show="msg" />
       <form id="burger-form" @submit="createBurger">
         <h1>Monte seu burger</h1>
         <div class="input-container">
@@ -17,7 +17,7 @@
           <label for="bread">choose bread: </label>
           <select name="bread" id="bread" v-model="bread">
             <option v-for="bread in breads" :key="bread.id" :value="bread.tipo">
-             {{ bread.tipo }}
+              {{ bread.tipo }}
             </option>
           </select>
         </div>
@@ -54,7 +54,6 @@
 </template>
 
 <script>
-
 import MessageAlert from "./MessageAlert.vue";
 
 export default {
@@ -101,9 +100,9 @@ export default {
       });
 
       const res = await req.json();
-      this.msg = `Pedido número: ${res.id} realizado com sucesso!`
+      this.msg = `Pedido número: ${res.id} realizado com sucesso!`;
 
-      setTimeout(() => this.msg = '', 3000);
+      setTimeout(() => (this.msg = ""), 3000);
     },
   },
   mounted() {
@@ -111,8 +110,8 @@ export default {
   },
   components: {
     MessageAlert,
-    MessageAlert
-}
+    MessageAlert,
+  },
 };
 </script>
 

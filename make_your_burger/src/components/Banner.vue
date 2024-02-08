@@ -22,11 +22,11 @@ export default {
 }
 
 #main-banner h1 {
-    color: #FFF;
-    text-align: center;
-    font-size: 60px;
-    background-color: #222;
-    margin: 20px;
-    padding: 20px;
+  color: #fff;
+  text-align: center;
+  font-size: 60px;
+  background-color: #222;
+  margin: 20px;
+  padding: 20px;
 }
 </style>

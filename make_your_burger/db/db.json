@@ -79,31 +79,37 @@
   ],
   "burgers": [
     {
-      "id": "3479",
+      "id": "129f",
       "name": "teste",
       "bread": "Italiano Branco",
-      "meat": null,
+      "meat": "Picanha",
       "options": [
-        "Bacon"
+        "Bacon",
+        "Tomate",
+        "Cebola roxa"
       ],
-      "status": "solicitado"
+      "status": "Em produção"
     },
     {
-      "id": "2d15",
-      "name": "teste",
-      "bread": "Parmesão e Orégano",
+      "id": "efe1",
+      "name": "joao",
+      "bread": "3 Queijos",
+      "meat": "Maminha",
       "options": [
+        "Tomate",
         "Salame"
       ],
       "status": "solicitado"
     },
     {
-      "id": "b9ba",
-      "name": "teste",
-      "bread": "3 Queijos",
-      "meat": "Alcatra",
+      "id": "46b5",
+      "name": "maria",
+      "bread": "Integral",
+      "meat": "Veggie burger",
       "options": [
-        "Bacon"
+        "Tomate",
+        "Pepino",
+        "Cebola roxa"
       ],
       "status": "solicitado"
     }

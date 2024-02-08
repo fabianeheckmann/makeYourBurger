@@ -1,6 +1,7 @@
 <template>
   <div class="burger-table">
     <div>
+      <MessageAlert :msg="msg" v-show="msg" />
       <div id="burger-table-heading">
         <div class="order-id">#:</div>
         <div>Cliente:</div>
@@ -11,7 +12,7 @@
       </div>
     </div>
     <div id="burger-table-rows" v-if="burgers">
-      <div class="burger-table-row" v-for="burger in burgers" :key="burger.id" >
+      <div class="burger-table-row" v-for="burger in burgers" :key="burger.id">
         <div class="order-number">{{ burger.id }}</div>
         <div>{{ burger.name }}</div>
         <div>{{ burger.bread }}</div>
@@ -19,15 +20,29 @@
         <div>
           <ul>
             <li v-for="(opcional, index) in burger.options" :key="index">
-            {{ opcional }}
+              {{ opcional }}
             </li>
           </ul>
         </div>
         <div>
-          <select name="status" class="status" id="">
-            <option value="">selecione</option>
+          <select
+            name="status"
+            class="status"
+            id=""
+            @change="updateBurger($event, burger.id)"
+          >
+            <option
+              v-for="s in status"
+              :key="s.id"
+              :value="s.tipo"
+              :selected="burger.status == s.tipo"
+            >
+              {{ s.tipo }}
+            </option>
           </select>
-          <button class="delete-btn">Cancelar</button>
+          <button class="delete-btn" @click="deleteBurger(burger.id)">
+            Cancel
+          </button>
         </div>
       </div>
     </div>
@@ -35,6 +50,8 @@
 </template>
 
 <script>
+import MessageAlert from "./MessageAlert.vue";
+
 export default {
   name: "Dashboard",
   data() {
@@ -42,24 +59,67 @@ export default {
       burgers: null,
       burger_id: null,
       status: [],
+      msg: null,
     };
+  },
+  components: {
+    MessageAlert,
   },
   methods: {
     async getPedidos() {
+      const req = await fetch("http://localhost:3000/burgers");
 
-        const req = await fetch("http://localhost:3000/burgers");
+      const data = await req.json();
 
-        const data = await req.json();
+      this.burgers = data;
 
-        this.burgers = data;
-        
-        //status
+      //status
+      this.getStatus();
+    },
 
-    }
+    async getStatus() {
+      const req = await fetch("http://localhost:3000/status");
+
+      const data = await req.json();
+
+      this.status = data;
+    },
+
+    async deleteBurger(id) {
+      const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+        method: "DELETE",
+      });
+
+      const res = await req.json();
+
+      this.msg = `Pedido número: ${res.id} removido com sucesso!`;
+
+      setTimeout(() => (this.msg = ""), 3000);
+
+      this.getPedidos();
+    },
+
+    async updateBurger(event, id) {
+      const option = event.target.value;
+
+      const dataJson = JSON.stringify({ status: option });
+
+      const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: dataJson,
+      });
+
+      const res = await req.json();
+
+      this.msg = `Status do pedido número: ${res.id} foi alterado para: ${res.status}!`;
+
+      setTimeout(() => (this.msg = ""), 3000);
+    },
   },
   mounted() {
     this.getPedidos();
-  }
+  },
 };
 </script>
 
@@ -119,5 +179,4 @@ select {
   background-color: transparent;
   color: #222;
 }
-
 </style>
